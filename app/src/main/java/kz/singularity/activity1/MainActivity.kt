@@ -1,8 +1,13 @@
 package kz.singularity.activity1
 
+import android.content.SharedPreferences
+import android.content.pm.ApplicationInfo
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,6 +17,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Log.d(TAG, "onCreate")
+
+        contextExamples()
+
+        this.applicationContext
+        applicationContext
+    }
+
+    private fun contextExamples() {
+        val color1: Int = ContextCompat.getColor(this, R.color.black)
+
+        val color2 = ResourcesCompat.getColor(resources, R.color.black, null)
+        val text: String = getString(R.string.app_name)
+        val dimen: Float =
+            resources.getDimension(androidx.core.R.dimen.compat_notification_large_icon_max_width)
+        val apps: MutableList<ApplicationInfo> = packageManager.getInstalledApplications(
+            PackageManager.GET_META_DATA
+        )
     }
 
     override fun onStart() {
@@ -43,7 +65,6 @@ class MainActivity : AppCompatActivity() {
         super.onRestart()
         Log.d(TAG, "onRestart")
     }
-
 
 
 }
