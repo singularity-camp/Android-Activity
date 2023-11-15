@@ -24,11 +24,14 @@ class SecondActivity : AppCompatActivity() {
 
     private val activityResultLauncher: ActivityResultLauncher<Intent> =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            Log.d(TAG, "onActivityResult")
+
             if (it.resultCode == Activity.RESULT_CANCELED) {
-                showToast("Photo is required")
+                showToast("We got cancelled")
             }
             if (it.resultCode == Activity.RESULT_OK) {
-                showToast("result is achieved")
+                currentCounter = 0
+                updateCounterText()
             }
         }
 
@@ -57,12 +60,12 @@ class SecondActivity : AppCompatActivity() {
     private fun setupClickListeners() {
         plusButton.setOnClickListener {
             currentCounter++
-            counterTextView.text = currentCounter.toString()
+            updateCounterText()
         }
         btnOpenThird.setOnClickListener {
             val intent = Intent(this, ThirdActivity::class.java)
             intent.putExtra(RESULT_KEY, currentCounter)
-            startActivity(intent)
+            activityResultLauncher.launch(intent)
         }
     }
 
