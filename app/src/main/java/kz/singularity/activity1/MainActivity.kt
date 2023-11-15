@@ -1,11 +1,13 @@
 package kz.singularity.activity1
 
+import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 
@@ -13,10 +15,18 @@ class MainActivity : AppCompatActivity() {
 
     private val TAG = "MainActivity"
 
+    lateinit var btnOpenSecond: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Log.d(TAG, "onCreate")
+
+        btnOpenSecond = findViewById(R.id.btn_open_second)
+        btnOpenSecond.setOnClickListener {
+            val intent = Intent(this, SecondActivity::class.java)
+            startActivity(intent)
+        }
 
         contextExamples()
 
