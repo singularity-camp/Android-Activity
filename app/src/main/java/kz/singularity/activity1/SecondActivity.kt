@@ -1,5 +1,6 @@
 package kz.singularity.activity1
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -10,23 +11,44 @@ class SecondActivity : AppCompatActivity() {
 
     private val TAG = "SecondActivity"
     private val KEY_COUNTER = "key_counter"
+
+    private lateinit var counterTextView: TextView
+    private lateinit var plusButton: Button
+    private lateinit var btnOpenThird: Button
+
     var currentCounter = 0
-    lateinit var counterTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate = $this")
         setContentView(R.layout.activity_second)
 
+        initViews()
 
-        val plusButton: Button = findViewById(R.id.plusButton)
+        updateCounterText()
+
+        setupClickListeners()
+    }
+
+    private fun initViews() {
+        plusButton = findViewById(R.id.plusButton)
         counterTextView = findViewById(R.id.counterTextView)
+        btnOpenThird = findViewById(R.id.btn_open_third)
+    }
 
+    private fun updateCounterText() {
         counterTextView.text = currentCounter.toString()
+    }
 
+    private fun setupClickListeners() {
         plusButton.setOnClickListener {
             currentCounter++
             counterTextView.text = currentCounter.toString()
+        }
+        btnOpenThird.setOnClickListener {
+            val intent = Intent(this, ThirdActivity::class.java)
+            intent.putExtra(RESULT_KEY, currentCounter)
+            startActivity(intent)
         }
     }
 

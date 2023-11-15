@@ -26,4 +26,10 @@
         android:layout_height="wrap_content"
         android:text="+1" />
 
+    <Button
+        android:id="@+id/btn_open_third"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/open_result" />
+
 </LinearLayout>
