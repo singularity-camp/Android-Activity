@@ -1,10 +1,14 @@
 package kz.singularity.activity1
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 
 class SecondActivity : AppCompatActivity() {
@@ -17,6 +21,16 @@ class SecondActivity : AppCompatActivity() {
     private lateinit var btnOpenThird: Button
 
     var currentCounter = 0
+
+    private val activityResultLauncher: ActivityResultLauncher<Intent> =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == Activity.RESULT_CANCELED) {
+                showToast("Photo is required")
+            }
+            if (it.resultCode == Activity.RESULT_OK) {
+                showToast("result is achieved")
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
