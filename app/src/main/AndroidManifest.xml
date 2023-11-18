@@ -23,7 +23,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".SecondActivity" />
+        <activity android:name=".SecondActivity"
+            android:theme="@style/Theme.Activity2"/>
 
         <activity android:name=".ThirdActivity" />
 
