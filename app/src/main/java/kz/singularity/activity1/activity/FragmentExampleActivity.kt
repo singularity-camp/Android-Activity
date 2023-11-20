@@ -42,7 +42,7 @@ class FragmentExampleActivity : AppCompatActivity() {
             Log.d(TAG, "Fragments backstackCount = ${supportFragmentManager.backStackEntryCount}")
             Log.d(TAG, "Fragments count = ${supportFragmentManager.fragments.size}")
 
-            val fragmentToPut = MainFragment()
+            val fragmentToPut = MainFragment.newInstance(2)
             val transaction = supportFragmentManager.beginTransaction()
                 .add(R.id.fragmentContainer, fragmentToPut, null)
 
