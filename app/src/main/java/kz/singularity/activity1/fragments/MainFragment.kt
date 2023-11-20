@@ -53,13 +53,14 @@ class MainFragment : Fragment() {
     ): View? {
         val contentView = inflater.inflate(R.layout.fragment_main, container, false)
 
-        initViews(contentView)
         return contentView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initValuesFromArg()
+
+        initViews(view)
     }
 
     private fun initViews(contentView: View) {

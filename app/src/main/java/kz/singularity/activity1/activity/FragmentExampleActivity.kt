@@ -18,10 +18,11 @@ class FragmentExampleActivity : AppCompatActivity() {
     lateinit var btnAdd: Button
     lateinit var btnRemove: Button
     lateinit var btnReplace: Button
+    lateinit var btnTrigger: Button
 
     lateinit var cbBackStack: CheckBox
 
-    private var currentFragment: Fragment? = null
+    private var currentMainFragment: MainFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +36,7 @@ class FragmentExampleActivity : AppCompatActivity() {
         btnRemove = findViewById(R.id.btn_remove)
         btnReplace = findViewById(R.id.btn_replace)
         cbBackStack = findViewById(R.id.cb_backStack)
+        btnTrigger = findViewById(R.id.btn_trigger)
     }
 
     private fun setupClickListeners() {
@@ -43,6 +45,7 @@ class FragmentExampleActivity : AppCompatActivity() {
             Log.d(TAG, "Fragments count = ${supportFragmentManager.fragments.size}")
 
             val fragmentToPut = MainFragment.newInstance(2)
+            currentMainFragment = fragmentToPut
             val transaction = supportFragmentManager.beginTransaction()
                 .add(R.id.fragmentContainer, fragmentToPut, null)
 
@@ -72,6 +75,17 @@ class FragmentExampleActivity : AppCompatActivity() {
             }
 
             transaction.commit()
+        }
+
+        btnTrigger.setOnClickListener {
+            supportFragmentManager.fragments.forEach {
+                if (it is MainFragment) {
+                    it.tvName.text = "I command you"
+                }
+            }
+//            currentMainFragment?.let {
+//                it.tvName.text = "I command you"
+//            }
         }
     }
 }
