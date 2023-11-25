@@ -15,11 +15,11 @@ class NameViewHolder(
     fun bind(name: String, position: Int) {
         tvName.text = name
 
-        if (position % 2 == 1) {
-            tvName.setBackgroundColor(Color.CYAN)
-        } else {
-            tvName.setBackgroundColor(Color.TRANSPARENT)
-        }
+//        if (position % 2 == 1) {
+//            tvName.setBackgroundColor(Color.CYAN)
+//        } else {
+//            tvName.setBackgroundColor(Color.TRANSPARENT)
+//        }
 
         itemView.setOnClickListener {
             onNameClickListener.onNameClick(name)

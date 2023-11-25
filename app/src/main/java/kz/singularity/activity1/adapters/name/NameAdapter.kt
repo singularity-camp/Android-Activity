@@ -6,33 +6,50 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import kz.singularity.activity1.R
 
 class NameAdapter(private val onNameClickListener: NameClickListener) :
-    RecyclerView.Adapter<NameViewHolder>() {
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val TAG = "NameAdapter"
-//
-//    private val names = listOf("Арман", "Игорь", "Daniel", "Айсұлу")
-//    private val numbers = (1..100).toList().map { it.toString() }
+
+    private val VIEW_TYPE_ODD = 0
+    private val VIEW_TYPE_EVEN = 1
 
     private val names = mutableListOf<String>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NameViewHolder {
-        Log.d(TAG, "onCreateViewHolder")
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        Log.d(TAG, "onCreateViewHolder. ViewType = $viewType")
         //Create inflater
         //Inflate layout using it and store in value
 
         val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.item_name, parent, false)
+        val view = if (viewType == VIEW_TYPE_ODD) {
+            layoutInflater.inflate(R.layout.item_name_odd, parent, false)
+        } else {
+            layoutInflater.inflate(R.layout.item_name_even, parent, false)
+        }
         //Return new ViewHolder where you pass your newly create view
         return NameViewHolder(view, onNameClickListener)
     }
 
-    override fun onBindViewHolder(holder: NameViewHolder, position: Int) {
+    override fun getItemViewType(position: Int): Int {
+        return if (position % 2 == 0) {
+            VIEW_TYPE_ODD
+        } else {
+            VIEW_TYPE_EVEN
+        }
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         Log.d(TAG, "onBindViewHolder, position = $position")
         val name = names[position]
-
-        holder.bind(name = name, position = position)
+        if (holder is NameViewHolder) {
+            holder.bind(name = name, position = position)
+        }
+//        if (holder is //InstanceOfAnotherViewHolder) {
+//
+//          }
     }
 
 
