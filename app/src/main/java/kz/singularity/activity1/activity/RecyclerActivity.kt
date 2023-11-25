@@ -1,10 +1,11 @@
 package kz.singularity.activity1.activity
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 import kz.singularity.activity1.R
 import kz.singularity.activity1.adapters.name.NameAdapter
@@ -17,8 +18,12 @@ class RecyclerActivity : AppCompatActivity(R.layout.activity_recycler), NameClic
 
     lateinit var rvNames: RecyclerView
     lateinit var btnUpdate: Button
+    lateinit var btnAdd: Button
+    lateinit var btnScroll: Button
 
     lateinit var nameAdapter: NameAdapter
+
+    val numbers: MutableList<String> = (1..100).map { it.toString() }.toMutableList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +36,8 @@ class RecyclerActivity : AppCompatActivity(R.layout.activity_recycler), NameClic
     private fun assignViews() {
         rvNames = findViewById(R.id.rv_name)
         btnUpdate = findViewById(R.id.btn_update)
+        btnAdd = findViewById(R.id.btn_add)
+        btnScroll = findViewById(R.id.btn_scroll)
     }
 
     private fun setupRecyclerView() {
@@ -39,12 +46,22 @@ class RecyclerActivity : AppCompatActivity(R.layout.activity_recycler), NameClic
 
         rvNames.adapter = nameAdapter
         rvNames.layoutManager = layoutManager
+        rvNames.itemAnimator = null
+        rvNames.isVerticalScrollBarEnabled = true
     }
 
     private fun setupClickListeners() {
         btnUpdate.setOnClickListener {
-            nameAdapter.setData((1..100).toList().map { it.toString() })
+            nameAdapter.setData(numbers)
             //nameAdapter.notifyDataSetChanged()
+        }
+        btnAdd.setOnClickListener {
+            nameAdapter.addItemToPosition("Some name", 3)
+        }
+        btnScroll.setOnClickListener {
+            val scroller = LinearSmoothScroller(this)
+            scroller.targetPosition = 200
+            rvNames.layoutManager?.startSmoothScroll(scroller)
         }
     }
 

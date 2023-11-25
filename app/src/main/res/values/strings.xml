@@ -7,4 +7,6 @@
     <string name="open_google">Open Google</string>
     <string name="trigger">Trigger</string>
     <string name="update_data_set">Update data set</string>
+    <string name="scroll_to_last">Scroll to last</string>
+    <string name="add_item">Add item</string>
 </resources>

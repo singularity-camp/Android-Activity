@@ -34,11 +34,7 @@ class NameAdapter(private val onNameClickListener: NameClickListener) :
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (position % 2 == 0) {
-            VIEW_TYPE_ODD
-        } else {
-            VIEW_TYPE_EVEN
-        }
+        return VIEW_TYPE_EVEN
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -62,6 +58,11 @@ class NameAdapter(private val onNameClickListener: NameClickListener) :
         names.clear()
         names.addAll(newNames)
         notifyDataSetChanged()
+    }
+
+    fun addItemToPosition(name: String, position: Int) {
+        names.add(position, name, )
+        notifyItemInserted(position)
     }
 }
 
