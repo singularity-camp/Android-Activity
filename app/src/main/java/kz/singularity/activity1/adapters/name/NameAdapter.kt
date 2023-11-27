@@ -48,6 +48,11 @@ class NameAdapter(private val onNameClickListener: NameClickListener) :
 //          }
     }
 
+    fun moveItem(from: Int, to: Int) {
+        val name = names.removeAt(from)
+        names.add(to, name)
+    }
+
 
     override fun getItemCount(): Int {
         Log.d(TAG, "getItemCount")
