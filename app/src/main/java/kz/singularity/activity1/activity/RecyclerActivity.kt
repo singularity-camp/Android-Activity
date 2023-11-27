@@ -1,6 +1,7 @@
 package kz.singularity.activity1.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kz.singularity.activity1.R
 import kz.singularity.activity1.adapters.name.NameAdapter
 import kz.singularity.activity1.adapters.name.NameClickListener
+import kz.singularity.activity1.adapters.name.NamesListAdapter
 import kz.singularity.activity1.showToast
 
 class RecyclerActivity : AppCompatActivity(R.layout.activity_recycler), NameClickListener {
@@ -21,7 +23,7 @@ class RecyclerActivity : AppCompatActivity(R.layout.activity_recycler), NameClic
     lateinit var btnAdd: Button
     lateinit var btnScroll: Button
 
-    lateinit var nameAdapter: NameAdapter
+    lateinit var nameAdapter: NamesListAdapter
 
     val numbers: MutableList<String> = (1..100).map { it.toString() }.toMutableList()
 
@@ -41,7 +43,7 @@ class RecyclerActivity : AppCompatActivity(R.layout.activity_recycler), NameClic
     }
 
     private fun setupRecyclerView() {
-        nameAdapter = NameAdapter(this)
+        nameAdapter = NamesListAdapter(this)
         val layoutManager = LinearLayoutManager(this)
 
         rvNames.adapter = nameAdapter
@@ -52,11 +54,12 @@ class RecyclerActivity : AppCompatActivity(R.layout.activity_recycler), NameClic
 
     private fun setupClickListeners() {
         btnUpdate.setOnClickListener {
-            nameAdapter.setData(numbers)
+            nameAdapter.submitList(numbers)
             //nameAdapter.notifyDataSetChanged()
         }
         btnAdd.setOnClickListener {
-            nameAdapter.addItemToPosition("Some name", 3)
+            numbers.add(0, "New Item")
+            nameAdapter.submitList(numbers)
         }
         btnScroll.setOnClickListener {
             val scroller = LinearSmoothScroller(this)
