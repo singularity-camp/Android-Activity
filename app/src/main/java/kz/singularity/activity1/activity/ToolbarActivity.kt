@@ -39,12 +39,13 @@ class ToolbarActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_nested, menu)
+        menuInflater.inflate(R.menu.menu_group, menu)
 
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        item.setChecked(!item.isChecked)
         return when (item.itemId) {
             R.id.menu_one_one -> {
                 showToast("One one")
@@ -56,6 +57,18 @@ class ToolbarActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
             }
             R.id.menu_not_nested -> {
                 showToast("Not nested")
+                true
+            }
+            R.id.menu_one -> {
+                showToast("One")
+                true
+            }
+            R.id.menu_two -> {
+                showToast("Two")
+                true
+            }
+            R.id.menu_three -> {
+                showToast("Three")
                 true
             }
             else -> super.onOptionsItemSelected(item)
