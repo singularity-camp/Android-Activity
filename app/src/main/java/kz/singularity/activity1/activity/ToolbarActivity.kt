@@ -39,18 +39,27 @@ class ToolbarActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
+        menuInflater.inflate(R.menu.menu_nested, menu)
 
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.menu_android) {
-            showToast("Android clicked")
-            return true
+        return when (item.itemId) {
+            R.id.menu_one_one -> {
+                showToast("One one")
+                true
+            }
+            R.id.menu_one_two -> {
+                showToast("One two")
+                true
+            }
+            R.id.menu_not_nested -> {
+                showToast("Not nested")
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
-
-        return super.onOptionsItemSelected(item)
     }
 
     override fun onCreateContextMenu(
