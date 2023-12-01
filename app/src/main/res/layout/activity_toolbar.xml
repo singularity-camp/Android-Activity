@@ -27,6 +27,6 @@
         android:id="@+id/btn_open"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/open_second_toolbar_activity" />
+        android:text="@string/open" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
