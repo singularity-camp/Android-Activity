@@ -12,4 +12,6 @@
     <string name="open_second_toolbar_activity">Open Second Toolbar Activity</string>
     <string name="android">Android</string>
     <string name="open">Open</string>
+    <string name="open_context_menu">Open Context Menu</string>
+    <string name="open_popup_menu">Open Popup Menu</string>
 </resources>

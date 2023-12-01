@@ -9,16 +9,18 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.PopupMenu
 import androidx.appcompat.widget.Toolbar
 import kz.singularity.activity1.R
 import kz.singularity.activity1.showToast
 
-class ToolbarActivity : AppCompatActivity() {
+class ToolbarActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
 
     private val TAG = "ToolbarActivity"
 
     lateinit var toolbar: Toolbar
-    lateinit var btnOpen: Button
+    lateinit var btnOpenContextMenu: Button
+    lateinit var btnOpenPopupMenu: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,12 +29,13 @@ class ToolbarActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         setupClickListeners()
 
-        registerForContextMenu(btnOpen)
+        registerForContextMenu(btnOpenContextMenu)
     }
 
     private fun assignViews() {
         toolbar = findViewById(R.id.toolbar)
-        btnOpen = findViewById(R.id.btn_open)
+        btnOpenContextMenu = findViewById(R.id.btn_open_context_menu)
+        btnOpenPopupMenu = findViewById(R.id.btn_open_popup_menu)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -70,8 +73,25 @@ class ToolbarActivity : AppCompatActivity() {
     }
 
     private fun setupClickListeners() {
-        btnOpen.setOnClickListener {
-            startActivity(Intent(this, SecondToolbarActivity::class.java))
+        val popupMenu = PopupMenu(this, btnOpenPopupMenu)
+        popupMenu.menuInflater.inflate(R.menu.menu_main, popupMenu.menu)
+        popupMenu.setOnMenuItemClickListener(this)
+
+        btnOpenPopupMenu.setOnClickListener {
+            popupMenu.show()
         }
+    }
+
+    override fun onMenuItemClick(item: MenuItem?): Boolean {
+        if (item == null) {
+            return false
+        }
+
+        if (item.itemId == R.id.menu_android) {
+            showToast("Android clicked from popup menu")
+            return true
+        }
+
+        return false
     }
 }
