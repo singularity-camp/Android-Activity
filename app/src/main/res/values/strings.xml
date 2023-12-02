@@ -27,4 +27,7 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="nav_opened">Open Nav Drawer</string>
     <string name="nav_closed">Close Nav Drawer</string>
+    <string name="date_picker">Date Picker</string>
+    <string name="time_picker">Time Picker</string>
+    <string name="alert_dialog">Alert Dialog</string>
 </resources>
