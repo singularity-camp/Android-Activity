@@ -25,4 +25,6 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="nav_opened">Open Nav Drawer</string>
+    <string name="nav_closed">Close Nav Drawer</string>
 </resources>

@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Activity1"
         tools:targetApi="31">
         <activity
-            android:name=".activity.DrawerActivity"
+            android:name=".activity.CustomDrawerActivity"
             android:exported="true"
             android:label="@string/title_activity_drawer"
             android:theme="@style/Theme.Activity1.NoActionBar">
@@ -24,22 +24,26 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".activity.DrawerActivity"
+            android:exported="true"
+            android:label="@string/title_activity_drawer"
+            android:theme="@style/Theme.Activity1.NoActionBar" />
+        <activity
             android:name=".activity.RecyclerActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".activity.FragmentExampleActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".SecondActivity"
             android:theme="@style/Theme.Activity2" />
         <activity android:name=".ThirdActivity" />
         <activity
             android:name=".activity.ToolbarActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity android:name=".activity.SecondToolbarActivity" />
     </application>
 
