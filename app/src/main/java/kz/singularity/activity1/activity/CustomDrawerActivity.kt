@@ -7,9 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
 import kz.singularity.activity1.R
-import kz.singularity.activity1.showToast
+import kz.singularity.activity1.activity.ui.gallery.GalleryFragment
+import kz.singularity.activity1.activity.ui.home.HomeFragment
+import kz.singularity.activity1.activity.ui.slideshow.SlideshowFragment
 
 class CustomDrawerActivity : AppCompatActivity() {
 
@@ -24,6 +27,7 @@ class CustomDrawerActivity : AppCompatActivity() {
         setupActionBar()
         setupNavView()
         setupActionBarToggle()
+        showFragment(HomeFragment())
     }
 
     private fun assignViews() {
@@ -48,11 +52,22 @@ class CustomDrawerActivity : AppCompatActivity() {
 
     private fun setupNavView() {
         navView.setNavigationItemSelectedListener { menuItem ->
-            showToast(menuItem.title ?: "No title received")
+            when (menuItem.itemId) {
+                R.id.nav_home -> showFragment(HomeFragment())
+                R.id.nav_gallery -> showFragment(GalleryFragment())
+                R.id.nav_slideshow -> showFragment(SlideshowFragment())
+            }
+
             drawerLayout.closeDrawer(GravityCompat.START)
             return@setNavigationItemSelectedListener true
-
         }
+    }
+
+    private fun showFragment(fragment: Fragment) {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fl_container, fragment)
+            .commit()
     }
 
     private fun setupActionBarToggle() {
