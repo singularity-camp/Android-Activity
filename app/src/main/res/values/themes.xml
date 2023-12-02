@@ -16,7 +16,7 @@
 
     <style name="TitleTextStyle" parent="TextAppearance.AppCompat">
         <item name="android:textSize">19sp</item>
-<!--        <item name="titleTextColor">@color/white</item>-->
+        <!--        <item name="titleTextColor">@color/white</item>-->
         <item name="android:textStyle">bold</item>
     </style>
 
@@ -25,5 +25,14 @@
         <item name="android:textColor">@android:color/holo_red_light</item>
         <item name="android:textStyle">italic</item>
     </style>
+
+    <style name="Theme.Activity1.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Activity1.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Activity1.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>
