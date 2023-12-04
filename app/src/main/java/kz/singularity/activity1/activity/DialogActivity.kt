@@ -121,11 +121,18 @@ class DialogActivity : AppCompatActivity(R.layout.activity_dialog) {
             .setView(view)
             .show()
 
+
         btnClose.setOnClickListener { alertDialog.dismiss() }
     }
 
     private fun openFragmentDialog() {
-        val dialogFragment = CustomDialogFragment().show(supportFragmentManager, null)
+        val dialogFragment = CustomDialogFragment()
+        dialogFragment.setOnDismissListener {
+            Log.e(TAG, "Dialog has been dismissed")
+        }
+        dialogFragment.show(supportFragmentManager, null)
+
+
     }
 
 }

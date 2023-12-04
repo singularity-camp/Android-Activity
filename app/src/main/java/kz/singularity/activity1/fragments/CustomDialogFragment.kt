@@ -15,6 +15,8 @@ import kz.singularity.activity1.R
 
 class CustomDialogFragment : DialogFragment() {
 
+    private var onDismissListener: OnDismissListener? = null
+
     private companion object {
         private const val TAG = "CustomDialogFragment"
     }
@@ -67,6 +69,7 @@ class CustomDialogFragment : DialogFragment() {
 
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
+        onDismissListener?.onDismissHappened()
         Log.e(TAG, "onDismiss")
     }
 
@@ -79,4 +82,12 @@ class CustomDialogFragment : DialogFragment() {
         super.onDetach()
         Log.e(TAG, "onDetach")
     }
+
+    fun setOnDismissListener(onDismissListener: OnDismissListener) {
+        this.onDismissListener = onDismissListener
+    }
+}
+
+fun interface OnDismissListener {
+    fun onDismissHappened()
 }
