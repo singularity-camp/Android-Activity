@@ -4,9 +4,11 @@ import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
 import android.app.TimePickerDialog
 import android.app.TimePickerDialog.OnTimeSetListener
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import kz.singularity.activity1.R
@@ -22,6 +24,7 @@ class DialogActivity : AppCompatActivity(R.layout.activity_dialog) {
     private lateinit var btnDate: Button
     private lateinit var btnTime: Button
     private lateinit var btnAlert: Button
+    private lateinit var btnCustomAlert: Button
 
     private var selectedIndex = 0
     private val students by lazy { resources.getStringArray(R.array.array_students) }
@@ -37,12 +40,14 @@ class DialogActivity : AppCompatActivity(R.layout.activity_dialog) {
         btnDate = findViewById(R.id.btn_date)
         btnTime = findViewById(R.id.btn_time)
         btnAlert = findViewById(R.id.btn_alert)
+        btnCustomAlert = findViewById(R.id.btn_custom_alert)
     }
 
     private fun setupClickListeners() {
         btnDate.setOnClickListener { openDatePickerDialog() }
         btnTime.setOnClickListener { openTimePickerDialog() }
         btnAlert.setOnClickListener { openAlertDialog() }
+        btnCustomAlert.setOnClickListener { openCustomAlertDialog() }
     }
 
     private fun openDatePickerDialog() {
@@ -76,7 +81,6 @@ class DialogActivity : AppCompatActivity(R.layout.activity_dialog) {
     }
 
     private fun openAlertDialog() {
-
         AlertDialog.Builder(this)
             .setTitle("Do you want to buy it?")
             .setPositiveButton(android.R.string.ok) { _, _ -> Log.e(TAG, "onPositiveButton Click") }
@@ -93,13 +97,27 @@ class DialogActivity : AppCompatActivity(R.layout.activity_dialog) {
 //                Log.e(TAG, "Clicked on student at $index")
 //                selectedIndex = index
 //            }
-            .setMultiChoiceItems(
-                students, studentsTicked
-            ) { p0, index, isChecked ->
+            .setMultiChoiceItems(students, studentsTicked) { _, index, isChecked ->
                 Log.e(TAG, "OnChecked = $index, isChecked = $isChecked")
                 studentsTicked[index] = isChecked
             }
             .show()
+    }
+
+    private fun openCustomAlertDialog() {
+        val view = layoutInflater.inflate(R.layout.dialog_custom, null, false)
+        val tvTitle: TextView = view.findViewById(R.id.title)
+        val tvSubtitle: TextView = view.findViewById(R.id.subtitle)
+        val btnClose: TextView = view.findViewById(R.id.closeButton)
+
+        tvTitle.text = "Custom Title"
+        tvSubtitle.text = "Custom Subtitle"
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(view)
+            .show()
+
+        btnClose.setOnClickListener { alertDialog.dismiss() }
+
 
     }
 
