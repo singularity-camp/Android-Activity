@@ -31,4 +31,5 @@
     <string name="time_picker">Time Picker</string>
     <string name="alert_dialog">Alert Dialog</string>
     <string name="custom_alert_dialog">Custom Alert Dialog</string>
+    <string name="open_fragment_dialog">Open Fragment Dialog</string>
 </resources>

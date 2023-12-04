@@ -8,6 +8,7 @@ import android.widget.CheckBox
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import kz.singularity.activity1.R
+import kz.singularity.activity1.fragments.CustomDialogFragment
 import kz.singularity.activity1.fragments.MainFragment
 import kz.singularity.activity1.fragments.SecondFragment
 
@@ -44,10 +45,10 @@ class FragmentExampleActivity : AppCompatActivity() {
             Log.d(TAG, "Fragments backstackCount = ${supportFragmentManager.backStackEntryCount}")
             Log.d(TAG, "Fragments count = ${supportFragmentManager.fragments.size}")
 
-            val fragmentToPut = MainFragment.newInstance(2)
-            currentMainFragment = fragmentToPut
+//            val fragmentToPut = MainFragment.newInstance(2)
+//            currentMainFragment = fragmentToPut
             val transaction = supportFragmentManager.beginTransaction()
-                .add(R.id.fragmentContainer, fragmentToPut, null)
+                .add(R.id.fragmentContainer, CustomDialogFragment(), null)
 
             if (cbBackStack.isChecked) {
                 transaction.addToBackStack(null)

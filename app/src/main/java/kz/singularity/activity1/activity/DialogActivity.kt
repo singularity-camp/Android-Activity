@@ -8,10 +8,12 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.ListAdapter
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import kz.singularity.activity1.R
+import kz.singularity.activity1.fragments.CustomDialogFragment
 import kz.singularity.activity1.showToast
 import java.util.*
 
@@ -25,6 +27,7 @@ class DialogActivity : AppCompatActivity(R.layout.activity_dialog) {
     private lateinit var btnTime: Button
     private lateinit var btnAlert: Button
     private lateinit var btnCustomAlert: Button
+    private lateinit var btnDialogFragment: Button
 
     private var selectedIndex = 0
     private val students by lazy { resources.getStringArray(R.array.array_students) }
@@ -41,6 +44,7 @@ class DialogActivity : AppCompatActivity(R.layout.activity_dialog) {
         btnTime = findViewById(R.id.btn_time)
         btnAlert = findViewById(R.id.btn_alert)
         btnCustomAlert = findViewById(R.id.btn_custom_alert)
+        btnDialogFragment = findViewById(R.id.btn_dialog_fragment)
     }
 
     private fun setupClickListeners() {
@@ -48,6 +52,7 @@ class DialogActivity : AppCompatActivity(R.layout.activity_dialog) {
         btnTime.setOnClickListener { openTimePickerDialog() }
         btnAlert.setOnClickListener { openAlertDialog() }
         btnCustomAlert.setOnClickListener { openCustomAlertDialog() }
+        btnDialogFragment.setOnClickListener { openFragmentDialog() }
     }
 
     private fun openDatePickerDialog() {
@@ -117,8 +122,10 @@ class DialogActivity : AppCompatActivity(R.layout.activity_dialog) {
             .show()
 
         btnClose.setOnClickListener { alertDialog.dismiss() }
+    }
 
-
+    private fun openFragmentDialog() {
+        val dialogFragment = CustomDialogFragment().show(supportFragmentManager, null)
     }
 
 }
