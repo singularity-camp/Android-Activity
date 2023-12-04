@@ -2,12 +2,9 @@ package kz.singularity.activity1.activity
 
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
-import android.app.ProgressDialog.show
 import android.app.TimePickerDialog
 import android.app.TimePickerDialog.OnTimeSetListener
-import android.content.DialogInterface
 import android.os.Bundle
-import android.provider.CalendarContract.CalendarAlerts
 import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
@@ -25,6 +22,10 @@ class DialogActivity : AppCompatActivity(R.layout.activity_dialog) {
     private lateinit var btnDate: Button
     private lateinit var btnTime: Button
     private lateinit var btnAlert: Button
+
+    private var selectedIndex = 0
+    private val students by lazy { resources.getStringArray(R.array.array_students) }
+    private val studentsTicked by lazy { students.map { false }.toBooleanArray() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,6 +76,7 @@ class DialogActivity : AppCompatActivity(R.layout.activity_dialog) {
     }
 
     private fun openAlertDialog() {
+
         AlertDialog.Builder(this)
             .setTitle("Do you want to buy it?")
             .setPositiveButton(android.R.string.ok) { _, _ -> Log.e(TAG, "onPositiveButton Click") }
@@ -87,6 +89,16 @@ class DialogActivity : AppCompatActivity(R.layout.activity_dialog) {
             .setNeutralButton("I'l think", null)
             .setOnCancelListener { Log.e(TAG, "onCancelListener") }
             .setOnDismissListener { Log.e(TAG, "onDismissListener") }
+//            .setSingleChoiceItems(R.array.array_students, selectedIndex) {_, index ->
+//                Log.e(TAG, "Clicked on student at $index")
+//                selectedIndex = index
+//            }
+            .setMultiChoiceItems(
+                students, studentsTicked
+            ) { p0, index, isChecked ->
+                Log.e(TAG, "OnChecked = $index, isChecked = $isChecked")
+                studentsTicked[index] = isChecked
+            }
             .show()
 
     }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="array_students">
+        <item>Azamat</item>
+        <item>Yeskendir</item>
+        <item>Aigerim</item>
+        <item>Temirlan</item>
+        <item>Almat</item>
+        <item>Ain</item>
+        <item>Yerbol</item>
+        <item>Farabi</item>
+        <item>Yedil</item>
+    </string-array>
+</resources>
