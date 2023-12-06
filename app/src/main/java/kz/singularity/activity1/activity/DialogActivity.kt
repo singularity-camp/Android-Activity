@@ -12,6 +12,7 @@ import android.widget.ListAdapter
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager.widget.ViewPager
 import kz.singularity.activity1.R
 import kz.singularity.activity1.fragments.CustomDialogFragment
 import kz.singularity.activity1.showToast

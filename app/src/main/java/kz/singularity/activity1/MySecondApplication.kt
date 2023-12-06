@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import timber.log.Timber
 
 class MySecondApplication : Application() {
 
@@ -16,6 +17,7 @@ class MySecondApplication : Application() {
         super.onCreate()
         Log.d(TAG, "onCreate")
 
+        Timber.plant(Timber.DebugTree())
         val color1: Int = ContextCompat.getColor(this, R.color.black)
     }
 }
