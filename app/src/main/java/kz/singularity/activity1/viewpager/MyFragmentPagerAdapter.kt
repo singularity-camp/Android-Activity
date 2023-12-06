@@ -27,4 +27,12 @@ class MyFragmentPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAd
             }
         }
     }
+
+    override fun getPageTitle(position: Int): CharSequence? {
+        return when (position) {
+            0 -> "Home"
+            1 -> "Gallery"
+            else -> "Slideshow"
+        }
+    }
 }

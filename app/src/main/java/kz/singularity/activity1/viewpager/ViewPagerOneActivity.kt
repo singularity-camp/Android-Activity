@@ -10,6 +10,7 @@ import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
+import com.google.android.material.tabs.TabLayout
 import kz.singularity.activity1.R
 
 class ViewPagerOneActivity : AppCompatActivity() {
@@ -25,6 +26,9 @@ class ViewPagerOneActivity : AppCompatActivity() {
 
     @BindView(R.id.btn_right)
     lateinit var btnRight: Button
+
+    @BindView(R.id.tl_main)
+    lateinit var tlMain: TabLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +56,7 @@ class ViewPagerOneActivity : AppCompatActivity() {
             }
 
         })
+        tlMain.setupWithViewPager(vpMain)
         setIndicatorText(vpMain.currentItem)
     }
 
@@ -67,6 +72,11 @@ class ViewPagerOneActivity : AppCompatActivity() {
     @OnClick(R.id.btn_right)
     fun onRightClick() {
         vpMain.setCurrentItem(vpMain.currentItem + 1)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        vpMain.clearOnPageChangeListeners()
     }
 
 }
