@@ -32,4 +32,7 @@
     <string name="alert_dialog">Alert Dialog</string>
     <string name="custom_alert_dialog">Custom Alert Dialog</string>
     <string name="open_fragment_dialog">Open Fragment Dialog</string>
+    <string name="here">Туда</string>
+    <string name="suda">Сюда</string>
+    <string name="tuda">Туда</string>
 </resources>
