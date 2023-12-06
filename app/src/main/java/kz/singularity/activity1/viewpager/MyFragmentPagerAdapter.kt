@@ -9,7 +9,6 @@ import kz.singularity.activity1.activity.ui.slideshow.SlideshowFragment
 
 class MyFragmentPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
 
-
     override fun getCount(): Int {
         return 3
     }
