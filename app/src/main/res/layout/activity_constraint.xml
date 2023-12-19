@@ -1,0 +1,121 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Левый constraint view_1 привязан к левой стороне ConstraintLayout.
+           Верхний constraint view_1 — к верхней стороне ConstraintLayout.
+           Правый и нижний constraint не привязаны -->
+    <TextView
+        android:id="@+id/view_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="view_1"
+        android:textSize="24sp"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <!-- Левый constraint у view_2 привязан к правой стороне view_1.
+           Constraint базовой линии view_2 — к базовой линии view_1.
+           Нижний и верхний constraint привязывать нельзя, так как есть привязка по базовой линии.
+           Правый constraint не привязан. -->
+    <TextView
+        android:id="@+id/view_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="view_2"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@id/view_1"
+        app:layout_constraintBaseline_toBaselineOf="@id/view_1"/>
+
+    <!-- Левый constraint view_3 привязан к правой стороне view_1.
+           Верхний constraint view_3 — к нижней стороне view_1.
+           Правый и нижний constraint не привязаны. -->
+    <TextView
+        android:id="@+id/view_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="view_3"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/view_1"
+        app:layout_constraintLeft_toRightOf="@id/view_1"/>
+
+    <!-- Левый constraint view_4 привязан к правой стороне view_2.
+           Нижний constraint view_4 — к нижней стороне view_2.
+           Правый и верхний constraint не привязаны. -->
+    <TextView
+        android:id="@+id/view_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="view_4"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/view_1"
+        app:layout_constraintLeft_toRightOf="@id/view_2"/>
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintTop_toBottomOf="@id/barrier_first"
+        app:layout_constraintStart_toEndOf="@+id/view_1"/>
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="view_1, view_2"/>
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="view_1, view_2"
+        app:barrierDirection="bottom" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline"
+        app:layout_constraintGuide_begin="16dp"
+        android:orientation="horizontal" />
+
+
+    <TextView
+        android:id="@+id/tv_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/guideline"
+        app:layout_constraintEnd_toStartOf="@id/tv_two"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        android:text="textView1"/>
+
+    <TextView
+        android:id="@+id/tv_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/tv_one"
+        app:layout_constraintEnd_toStartOf="@id/tv_three"
+        app:layout_constraintTop_toBottomOf="@id/guideline"
+        android:text="textView2"/>
+
+
+    <TextView
+        android:id="@+id/tv_three"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/tv_two"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline"
+        android:text="textView3"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
