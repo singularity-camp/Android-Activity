@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="UnderlinedTextView">
+        <attr name="isUnderlined" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="TitleSubtitleView">
+        <attr name="title" format="string"/>
+        <attr name="subtitle" format="string"/>
+    </declare-styleable>
+</resources>
