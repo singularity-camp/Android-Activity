@@ -1,6 +1,7 @@
 package kz.singularity.activity1.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -8,10 +9,15 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import butterknife.BindView
 import butterknife.ButterKnife
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 import kz.singularity.activity1.R
+import kz.singularity.activity1.network.RetrofitBuilder
 import kz.singularity.activity1.showToast
 import kz.singularity.activity1.views.TitleSubtitleView
 import kz.singularity.activity1.views.UnderlinedTextView
+import timber.log.Timber
 
 class CustomViewActivity : AppCompatActivity() {
 
@@ -32,6 +38,15 @@ class CustomViewActivity : AppCompatActivity() {
             setTitle("Custom View")
             setSubtitle("Created programmatically")
         })
+
+        val apiService = RetrofitBuilder.apiService
+        MainScope().launch(Dispatchers.IO) {
+            val usersReceived = apiService.getUsers()
+            usersReceived.forEach {user ->
+
+                Timber.e("User = $user")
+            }
+        }
     }
 
 }
