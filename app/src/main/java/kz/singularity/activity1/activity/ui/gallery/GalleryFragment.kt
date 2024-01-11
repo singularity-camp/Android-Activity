@@ -7,7 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import kz.singularity.activity1.R
 import kz.singularity.activity1.databinding.FragmentGalleryBinding
+import kz.singularity.activity1.fragments.MainFragment
+import timber.log.Timber
 
 class GalleryFragment : Fragment() {
 
@@ -31,6 +35,12 @@ class GalleryFragment : Fragment() {
         val textView: TextView = binding.textGallery
         galleryViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
+        }
+
+        textView.setOnClickListener {
+            val args = Bundle()
+            args.putInt(MainFragment.ARG_NUMBER, 3)
+            findNavController().navigate(R.id.main, args)
         }
         return root
     }

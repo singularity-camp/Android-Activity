@@ -20,7 +20,7 @@ class MainFragment : Fragment() {
 
     companion object {
 
-        private const val ARG_NUMBER = "arg_number"
+        const val ARG_NUMBER = "arg_number"
 
         fun newInstance(numberToPut: Int): MainFragment {
             val args = Bundle()
