@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
     app:startDestination="@id/second">
 
     <fragment android:id="@+id/main"
-        android:name="kz.singularity.activity1.fragments.MainFragment">
+        android:name="kz.singularity.activity1.fragments.MainFragment"
+        tools:layout="@layout/fragment_main">
 
 
     </fragment>
 
 
     <fragment android:id="@+id/second"
-        android:name="kz.singularity.activity1.activity.ui.gallery.GalleryFragment">
+        android:name="kz.singularity.activity1.activity.ui.gallery.GalleryFragment"
+        tools:layout="@layout/fragment_gallery">
 
         <action android:id="@+id/action_to_second"
             app:destination="@id/main" />
