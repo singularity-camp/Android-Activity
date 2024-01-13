@@ -1,26 +1,28 @@
 package kz.singularity.activity1.fragments
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
-import android.text.style.TtsSpan.ARG_NUMBER
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import kotlinx.coroutines.Dispatchers.Main
+import kz.singularity.activity1.ParcelableUser
 import kz.singularity.activity1.R
+import timber.log.Timber
 
 class MainFragment : Fragment() {
 
     val TAG = "MainFragment"
 
     var numberToShow: Int = 0
+    var parcelableUser: ParcelableUser? = null
 
     companion object {
 
         const val ARG_NUMBER = "arg_number"
+        const val ARG_USER = "parcelTest"
 
         fun newInstance(numberToPut: Int): MainFragment {
             val args = Bundle()
@@ -41,9 +43,16 @@ class MainFragment : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
+
+
     private fun initValuesFromArg() {
         val currentArgs = arguments ?: return
         numberToShow = currentArgs.getInt(ARG_NUMBER)
+        parcelableUser =  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            currentArgs.getParcelable(ARG_USER, ParcelableUser::class.java)
+        } else {
+            currentArgs.getParcelable(ARG_USER)
+        }
     }
 
     override fun onCreateView(
@@ -61,6 +70,7 @@ class MainFragment : Fragment() {
         initValuesFromArg()
 
         initViews(view)
+        Timber.e("Current User = $parcelableUser")
     }
 
     private fun initViews(contentView: View) {

@@ -8,10 +8,10 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import kz.singularity.activity1.ParcelableUser
 import kz.singularity.activity1.R
 import kz.singularity.activity1.databinding.FragmentGalleryBinding
 import kz.singularity.activity1.fragments.MainFragment
-import timber.log.Timber
 
 class GalleryFragment : Fragment() {
 
@@ -40,6 +40,10 @@ class GalleryFragment : Fragment() {
         textView.setOnClickListener {
             val args = Bundle()
             args.putInt(MainFragment.ARG_NUMBER, 3)
+            args.putParcelable(
+                MainFragment.ARG_USER,
+                ParcelableUser("Username", age = 23, isMale = true, height = 173.0)
+            )
             findNavController().navigate(R.id.main, args)
         }
         return root

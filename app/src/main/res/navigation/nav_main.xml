@@ -1,21 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
     app:startDestination="@id/second">
 
-    <fragment android:id="@+id/main"
-        android:name="kz.singularity.activity1.fragments.MainFragment">
+    <fragment
+        android:id="@+id/main"
+        android:name="kz.singularity.activity1.fragments.MainFragment"
+        tools:layout="@layout/fragment_main">
 
+        <argument
+            android:name="arg_number"
+            app:argType="integer"
+            android:defaultValue="0" />
 
+        <argument
+            android:name="parcelTest"
+            app:argType="kz.singularity.activity1.ParcelableUser"
+            android:defaultValue="@null"
+            app:nullable="true" />
     </fragment>
 
 
-    <fragment android:id="@+id/second"
-        android:name="kz.singularity.activity1.activity.ui.gallery.GalleryFragment">
+    <fragment
+        android:id="@+id/second"
+        android:name="kz.singularity.activity1.activity.ui.gallery.GalleryFragment"
+        tools:layout="@layout/fragment_gallery">
 
-        <action android:id="@+id/action_to_second"
-            app:destination="@id/main" />
+        <action
+            android:id="@+id/action_to_second"
+            app:destination="@id/main">
+        </action>
+
+        <action app:destination="@id/slide"
+            android:id="@+id/action_to_slide" />
     </fragment>
+
+    <fragment
+        android:id="@+id/slide"
+        android:name="kz.singularity.activity1.activity.ui.slideshow.SlideshowFragment"
+        tools:layout="@layout/fragment_slideshow"/>
 
 </navigation>
