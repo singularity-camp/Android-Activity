@@ -12,14 +12,14 @@
 
         <argument
             android:name="arg_number"
-            app:argType="integer"
-            android:defaultValue="0" />
+            android:defaultValue="0"
+            app:argType="integer" />
 
-        <argument
-            android:name="parcelTest"
-            app:argType="kz.singularity.activity1.ParcelableUser"
-            android:defaultValue="@null"
-            app:nullable="true" />
+        <!--        <argument-->
+        <!--            android:name="parcelTest"-->
+        <!--            app:argType="kz.singularity.activity1.ParcelableUser"-->
+        <!--            android:defaultValue="@null"-->
+        <!--            app:nullable="true" />-->
     </fragment>
 
 
@@ -29,17 +29,37 @@
         tools:layout="@layout/fragment_gallery">
 
         <action
-            android:id="@+id/action_to_second"
+            android:id="@+id/go_to_main"
             app:destination="@id/main">
+
+            <argument
+                android:name="arg_number"
+                android:defaultValue="0"
+                app:argType="integer" />
+
+            <argument
+                android:name="parcelTest"
+                android:defaultValue="@null"
+                app:argType="kz.singularity.activity1.ParcelableUser"
+                app:nullable="true" />
         </action>
 
-        <action app:destination="@id/slide"
-            android:id="@+id/action_to_slide" />
+        <action
+            android:id="@+id/go_to_slide"
+            app:destination="@id/slide">
+
+            <argument
+                android:name="myArg"
+                android:defaultValue="1"
+                app:argType="integer" />
+
+        </action>
+
     </fragment>
 
     <fragment
         android:id="@+id/slide"
         android:name="kz.singularity.activity1.activity.ui.slideshow.SlideshowFragment"
-        tools:layout="@layout/fragment_slideshow"/>
+        tools:layout="@layout/fragment_slideshow" />
 
 </navigation>

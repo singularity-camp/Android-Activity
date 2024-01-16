@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import kz.singularity.activity1.ParcelableUser
 import kz.singularity.activity1.R
-import timber.log.Timber
 
 class MainFragment : Fragment() {
 
@@ -23,14 +22,6 @@ class MainFragment : Fragment() {
 
         const val ARG_NUMBER = "arg_number"
         const val ARG_USER = "parcelTest"
-
-        fun newInstance(numberToPut: Int): MainFragment {
-            val args = Bundle()
-            args.putInt(ARG_NUMBER, numberToPut)
-            val fragment = MainFragment()
-            fragment.arguments = args
-            return fragment
-        }
     }
 
     override fun onAttach(context: Context) {
@@ -69,8 +60,9 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initValuesFromArg()
 
+
+
         initViews(view)
-        Timber.e("Current User = $parcelableUser")
     }
 
     private fun initViews(contentView: View) {
